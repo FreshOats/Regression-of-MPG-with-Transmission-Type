@@ -1,10 +1,11 @@
 ---
-title: "Regression Analysis of MPG by Trasmission Type"
+title: "Regression Analysis of MPG by Transmission Type"
 author: "Justin Papreck"
 date: "May 18, 2018"
 output: 
   pdf_document: default
-  html_document: default
+  html_document: 
+    keep_md: yes
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
@@ -29,8 +30,10 @@ The data analyzed were obtained from the 1974 Motor Trend magazine containing 11
 ## Exploratory Analysis
   Figures shown in Appendix. 
 
-
-```{r Exploratory3, echo = TRUE}
+```{r Exploratory1, echo = FALSE}
+fit <- lm(mpg ~ Transmission, data = mtcars)
+```
+```{r Exploratory2, echo = TRUE}
 summary(fit)$r.squared  ## R-squared value for model
 summary(fit)$coef  ## Linear model coefficients for model
 ```
@@ -104,7 +107,7 @@ correlations <- round(cor(mtcars[,-12]),2)
 color2D.matplot(correlations, show.values = 2, axes=FALSE, xlab="",ylab="")
 axis(1,at=c(seq(from=0.5,to=10.5,by=1)),labels=colnames(correlations), cex.axis=1)
 axis(2,at=c(seq(from=0.5,to=10.5,by=1)),labels=rev(colnames(correlations)), las=2, cex.axis=1)
-fit <- lm(mpg ~ Transmission, data = mtcars)
+
 ```
 ## ANOVA Analysis of Original Model and Stepwise Regression Model
 ```{r Analysis, echo = FALSE}
